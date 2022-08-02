@@ -8,8 +8,8 @@ Está poc foi criada para verificar como podemos consumir mensagens do kafka de 
 * [kafka tool](https://www.kafkatool.com/) (Gerenciador do kafka)
 
 ## Referências
-https://docs.spring.io/spring-kafka/docs/current/reference/html/#kafka-listener-annotation
-https://www.baeldung.com/spring-kafka
+* https://docs.spring.io/spring-kafka/docs/current/reference/html/#kafka-listener-annotation
+* https://www.baeldung.com/spring-kafka
 
 ### Endpoints
 
