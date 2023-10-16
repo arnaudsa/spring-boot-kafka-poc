@@ -35,4 +35,4 @@ jobs:
           cd wiki
           git add .
           git commit -m "Update documentation"
-          git push https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/OWNER/REPO.wiki.git
+          git push https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/arnaudsa/spring-boot-kafka-poc.wiki.git
