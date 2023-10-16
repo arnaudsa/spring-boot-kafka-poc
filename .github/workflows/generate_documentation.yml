@@ -40,6 +40,6 @@ jobs:
           git add .
           git pull
           git commit -m "Update documentation"
-          git push -f ${{ secrets.YOUR_GITHUB_TOKEN }}@${WIKI_REPO}
+          git push -f https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/arnaudsa/spring-boot-kafka-poc.wiki.git
       - name: List files in wiki directory
         run: ls -l ${{ github.workspace }}/wiki
