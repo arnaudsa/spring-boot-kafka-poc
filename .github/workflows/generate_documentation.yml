@@ -31,7 +31,7 @@ jobs:
           export GIT_REPO=$(git config --get remote.origin.url)
           export WIKI_REPO=${GIT_REPO/.git/.wiki.git}
           git clone $WIKI_REPO wiki
-          cp docs/API.md wiki/
+          cp ${{ github.workspace }}/docs/API.md wiki/
           cd wiki
           git add .
           git commit -m "Update documentation"
