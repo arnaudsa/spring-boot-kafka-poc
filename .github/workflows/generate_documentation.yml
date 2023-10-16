@@ -33,7 +33,6 @@ jobs:
           git clone $WIKI_REPO wiki
           cp docs/API.md wiki/
           cd wiki
-          git pull
           git add .
           git commit -m "Update documentation"
-          git push https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/arnaudsa/spring-boot-kafka-poc.wiki.git
+          git push -f https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/arnaudsa/spring-boot-kafka-poc.wiki.git
