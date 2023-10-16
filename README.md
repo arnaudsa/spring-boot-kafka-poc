@@ -23,3 +23,4 @@ Criar uma nova mensagem no kafka
 curl --location --request POST 'localhost:8080/messages'
 ```
 
+Para acessar a documentação das apis [clique aqui!](docs/apis/openapi.yaml)

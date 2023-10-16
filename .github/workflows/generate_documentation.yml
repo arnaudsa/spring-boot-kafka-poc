@@ -1,0 +1,38 @@
+name: Publish Swagger Documentation to Wiki
+
+on:
+  push:
+    branches:
+      - update-documentation
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Widdershins
+        run: npm install -g widdershins
+
+      - name: Generate Documentation
+        run: widdershins docs/apis/openapi.yaml -o docs/API.md
+
+      - name: Commit and push to Wiki
+        run: |
+          git config --global user.name "YOUR_GITHUB_USERNAME"
+          git config --global user.email "YOUR_GITHUB_EMAIL"
+          export GIT_REPO=$(git config --get remote.origin.url)
+          export WIKI_REPO=${GIT_REPO/.git/.wiki.git}
+          git clone $WIKI_REPO wiki
+          cp docs/API.md wiki/
+          cd wiki
+          git add .
+          git commit -m "Update documentation"
+          git push -f https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/arnaudsa/spring-boot-kafka-poc.wiki.git
