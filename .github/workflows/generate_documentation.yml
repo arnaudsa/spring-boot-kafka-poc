@@ -45,4 +45,4 @@ jobs:
         run: ls -l ${{ github.workspace }}/wiki
 
       - name: Push to Wiki
-        run: git push -f https://${{ secrets.YOUR_GITHUB_TOKEN }}:${WIKI_REPO}
+        run: git push -f https://${{ secrets.YOUR_GITHUB_TOKEN }}@${WIKI_REPO}
