@@ -1,9 +1,9 @@
-name: Publish Swagger Documentation
+name: Publish Swagger Documentation to Wiki
 
 on:
   push:
     branches:
-      - update-documentation
+      - main
 
 jobs:
   build-and-deploy:
@@ -18,14 +18,21 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Redoc CLI
-        run: npm install -g redoc-cli
+      - name: Install Widdershins
+        run: npm install -g widdershins
 
       - name: Generate Documentation
-        run: redoc-cli bundle docs/apis/openapi.yaml -o docs/index.html
+        run: widdershins docs/apis/openapi.yaml -o docs/API.md
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: gh-pages
-          folder: docs
+      - name: Commit and push to Wiki
+        run: |
+          git config --global user.name "YOUR_GITHUB_USERNAME"
+          git config --global user.email "YOUR_GITHUB_EMAIL"
+          export GIT_REPO=$(git config --get remote.origin.url)
+          export WIKI_REPO=${GIT_REPO/.git/.wiki.git}
+          git clone $WIKI_REPO wiki
+          cp docs/API.md wiki/
+          cd wiki
+          git add .
+          git commit -m "Update documentation"
+          git push https://${{ secrets.YOUR_GITHUB_TOKEN }}@github.com/OWNER/REPO.wiki.git
