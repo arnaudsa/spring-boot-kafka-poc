@@ -38,6 +38,7 @@ jobs:
           cp ${{ github.workspace }}/docs/API.md wiki/
           cd wiki
           git add .
+          git pull
           git commit -m "Update documentation"
 
       - name: List files in wiki directory
