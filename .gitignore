@@ -34,3 +34,4 @@ classes/
 hs_err_pid*
 
 **/build/
+.java-version
