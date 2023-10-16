@@ -33,6 +33,7 @@ jobs:
           git config --global user.email "YOUR_GITHUB_EMAIL"
           export GIT_REPO=$(git config --get remote.origin.url)
           export WIKI_REPO=${GIT_REPO/.git/.wiki.git}
+          git rm -r --cached .
           git clone $WIKI_REPO wiki
           cp ${{ github.workspace }}/docs/API.md wiki/
           cd wiki
