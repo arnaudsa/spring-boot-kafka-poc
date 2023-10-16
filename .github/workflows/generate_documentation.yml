@@ -3,7 +3,7 @@ name: Publish Swagger Documentation to Wiki
 on:
   push:
     branches:
-      - main
+      - update-documentation
 
 jobs:
   build-and-deploy:
