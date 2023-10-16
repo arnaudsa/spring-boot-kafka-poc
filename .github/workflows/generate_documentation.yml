@@ -1,32 +1,31 @@
-  yaml
-  name: Publish Swagger Documentation
+name: Publish Swagger Documentation
 
-  on:
-    push:
-      branches:
-        - update-documentation
+on:
+  push:
+    branches:
+      - update-documentation
 
-  jobs:
-    build-and-deploy:
-      runs-on: ubuntu-latest
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-        - name: Install Redoc CLI
-          run: npm install -g redoc-cli
+      - name: Install Redoc CLI
+        run: npm install -g redoc-cli
 
-        - name: Generate Documentation
-          run: redoc-cli bundle docs/apis/openapi.yaml -o docs/index.html
+      - name: Generate Documentation
+        run: redoc-cli bundle docs/apis/openapi.yaml -o docs/index.html
 
-        - name: Deploy to GitHub Pages
-          uses: JamesIves/github-pages-deploy-action@4.1.5
-          with:
-            branch: gh-pages
-            folder: docs
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: docs
